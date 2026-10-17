@@ -4,11 +4,490 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VANTEX</title>
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="description" content="VANTEX is a fan-made Roblox companion website for discovering games and organizing your gaming experience.">
+  <title>VANTEX — Roblox Companion</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0d12;
+      --surface: #131720;
+      --border: #292e3b;
+      --text: #f4f5fa;
+      --muted: #a2a9b9;
+      --accent: #8194ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 13, 18, 0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 100px 0 85px;
+      background:
+        radial-gradient(
+          ellipse at 80% 20%,
+          rgba(91, 111, 255, 0.14),
+          transparent 50%
+        );
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .intro {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #080a12;
+    }
+
+    section {
+      padding: 55px 0;
+      scroll-margin-top: 90px;
+    }
+
+    .section-heading {
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(25px, 4vw, 34px);
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      min-width: 0;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #1b2132;
+      font-size: 21px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .devices {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .device-label {
+      display: inline-block;
+      margin-top: 14px;
+      color: #a8b5ff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .notice {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 15px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .hero {
+        padding: 70px 0 55px;
+      }
+
+      .grid,
+      .devices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 460px) {
+      .grid,
+      .devices {
+        grid-template-columns: 1fr;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .intro {
+        font-size: 15px;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>VANTEX</h1>
-  <p>Your Roblox companion website.</p>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="VANTEX home">VANTEX</a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#explore">Explore</a>
+        <a href="#devices">Platforms</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="eyebrow">Your gaming space</div>
+
+        <h1>
+          Explore your<br>
+          <span>next adventure.</span>
+        </h1>
+
+        <p class="intro">
+          Discover experiences, organize your favorites, and
+          keep your gaming resources in one place.
+          Welcome to VANTEX, an independent Roblox companion website.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="#explore">Explore VANTEX</a>
+          <a class="button" href="#devices">Supported platforms</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="explore">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Explore VANTEX</h2>
+          <p>Tools and resources for your gaming experience.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">◈</div>
+            <h3>Game Library</h3>
+            <p>
+              Keep a list of Roblox experiences you want
+              to discover and play.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">▤</div>
+            <h3>Player Toolkit</h3>
+            <p>
+              Organize gaming notes, personal checklists,
+              and useful resources.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⚙</div>
+            <h3>Preferences</h3>
+            <p>
+              Explore a clean interface designed to adapt
+              to different screen sizes.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="devices">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Built for Your Setup</h2>
+          <p>Use the website on supported browsers across your devices.</p>
+        </div>
+
+        <div class="grid devices">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">▯</div>
+            <h3>Mobile</h3>
+            <p>
+              Responsive layouts for Android phones,
+              iPhones, and tablets.
+            </p>
+            <span class="device-label">Mobile browser</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">▣</div>
+            <h3>Windows PC</h3>
+            <p>
+              A flexible desktop layout for Windows
+              computers and laptops.
+            </p>
+            <span class="device-label">Desktop browser</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">▱</div>
+            <h3>Mac</h3>
+            <p>
+              Access VANTEX using a compatible browser
+              on macOS.
+            </p>
+            <span class="device-label">Desktop browser</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⌘</div>
+            <h3>Linux</h3>
+            <p>
+              Use the website from a compatible Linux
+              desktop browser.
+            </p>
+            <span class="device-label">Desktop browser</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⌁</div>
+            <h3>Controller</h3>
+            <p>
+              Controller-friendly website navigation can
+              be added for supported browsers and devices.
+            </p>
+            <span class="device-label">Support planned</span>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">◎</div>
+            <h3>Responsive Design</h3>
+            <p>
+              Content automatically adjusts to narrow
+              screens and larger displays.
+            </p>
+            <span class="device-label">Included</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>About VANTEX</h2>
+          <p>A companion website made for the gaming community.</p>
+        </div>
+
+        <div class="notice">
+          VANTEX is an independent fan-made project and is not
+          affiliated with, endorsed by, or sponsored by Roblox
+          Corporation. This website does not modify Roblox game
+          clients or provide exploit functionality.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year">2026</span> VANTEX</span>
+      <span>Independent fan-made companion website.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
+
 
